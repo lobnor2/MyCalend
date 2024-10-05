@@ -1,3 +1,4 @@
+import { RedirectToSignIn } from "@clerk/nextjs";
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
 // Protected Route

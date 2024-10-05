@@ -4,6 +4,7 @@ import React from "react";
 import { Button } from "./ui/button";
 import { PenBox } from "lucide-react";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
+import UserMenu from "./user-menu";
 
 const Header = () => {
   return (
@@ -20,7 +21,8 @@ const Header = () => {
       <div className="flex gap-5">
         <Link href="/events?create=true">
           <Button size="lg">
-            <PenBox size="16" className="mx-1" /> Create Event
+            <PenBox size="16" className="mx-1" />
+            Create Event
           </Button>
         </Link>
         <SignedOut>
@@ -31,7 +33,8 @@ const Header = () => {
           </SignInButton>
         </SignedOut>
         <SignedIn>
-          <UserButton />
+          <UserMenu />
+          {/* <UserButton /> */}
         </SignedIn>
       </div>
     </nav>
