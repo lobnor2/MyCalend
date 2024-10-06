@@ -89,7 +89,7 @@ export default function Home() {
       </div>
 
       {/* Key Features */}
-      <div className="border border-blue-700 mt-24 py-11">
+      <div className=" mt-24 py-11">
         <h2 className="text-center text-6xl mb-12 font-extralight">
           Key Features
         </h2>
@@ -112,11 +112,45 @@ export default function Home() {
       </div>
 
       {/* Carousel */}
-      <div className="border border-blue-700 mt-24 py-11">
+      <div className=" mt-24 py-11">
         <h2 className="text-center text-6xl mb-12 font-extralight">
           What Our Users Say
         </h2>
         <Testimonials />
+      </div>
+
+      {/* Call to Action */}
+      <div className=" mt-24 py-11">
+        <h2 className="text-center text-6xl mb-12 font-extralight">
+          How It Works
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+          {howItWorks.map((step, index) => {
+            return (
+              <div key={index} className="text-center  ">
+                <div className="bg-gray-200 rounded-full w-16 h-16 flex justify-center items-center mx-auto mb-5">
+                  <span className="font-bold text-xl">{index + 1}</span>
+                </div>
+                <h3 className="font-semibold mb-2">{step.step}</h3>
+                <h3 className="text-gray-500">{step.description}</h3>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className=" bg-gray-600 text-white p-8 text-center rounded-lg mx-4">
+        <h2 className="text-3xl mb-4">Ready to Simplify Your Meetings?</h2>
+        <p>
+          {" "}
+          Join thousands of professionals who trust mycalend for efficient time
+          management.
+        </p>
+        <Link href="/dashboard">
+          <Button className="mt-5" size="lg" variant="secondary">
+            Start For Free <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
+        </Link>
       </div>
     </main>
   );
