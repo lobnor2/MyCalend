@@ -42,9 +42,9 @@ const AppLayout = ({ children }) => {
             </ul>
           </nav>
         </aside>
-        <main className="">
+        <main className="bg-gray-50 w-screen">
           <header>
-            <h2 className="text-3xl">
+            <h2 className="text-4xl my-10 text-center">
               {navItems.find((item) => item.href === pathname).label ||
                 "Dashboard"}
             </h2>
