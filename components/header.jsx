@@ -20,7 +20,7 @@ const Header = async () => {
           className="h-11 w-auto md:h-16"
         />
       </Link>
-      <div className="flex gap-5">
+      <div className="flex gap-5 items-center">
         <Link href="/events?create=true">
           <Button className="h-8 md:h-11">
             <PenBox size="16" className="mx-1" />
