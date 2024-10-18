@@ -1,7 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/header";
-// import { ClerkProvider } from "@clerk/nextjs/dist/types/components.server";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {

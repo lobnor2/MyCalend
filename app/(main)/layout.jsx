@@ -19,9 +19,9 @@ const AppLayout = ({ children }) => {
   const pathname = usePathname();
   return (
     <>
-      {!isLoaded && <BarLoader />}
-      <div className="flex flex-col h-screen border border-red-600 md:flex-row">
-        <aside className="hidden md:block w-64 border border-blue-700">
+      {!isLoaded && <BarLoader width={"100%"} />}
+      <div className="flex flex-col h-screen md:flex-row">
+        <aside className="hidden md:block w-64">
           <nav className="">
             <ul>
               {navItems.map((item) => {
