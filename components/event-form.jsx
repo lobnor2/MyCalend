@@ -32,6 +32,8 @@ const EventForm = ({ onSubmitForm }) => {
   });
 
   const { loading, error, fn: fnCreateEvent } = useFetch(createEvent);
+
+  //get all form data in onSubmit async function
   const onSubmit = async (data) => {
     await fnCreateEvent(data);
     if (!loading && !error) onSubmitForm();
