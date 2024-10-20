@@ -7,6 +7,7 @@ const { auth, clerkClient } = require("@clerk/nextjs/server");
 export async function updateUsername(username) {
   const { userId } = auth();
 
+  //check user is loggedin or not
   if (!userId) {
     throw new Error("Unauthorized");
   }
