@@ -47,7 +47,9 @@ const CreateEventDrawer = () => {
           />
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline" onClose={handleClose}>
+                Cancel
+              </Button>
             </DrawerClose>
           </DrawerFooter>
         </div>

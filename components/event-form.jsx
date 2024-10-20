@@ -25,7 +25,7 @@ const EventForm = ({ onSubmitForm }) => {
     formState: { errors },
   } = useForm({
     resolver: zodResolver(eventSchema),
-    defaultValue: {
+    defaultValues: {
       duration: 30,
       isPrivate: true,
     },
@@ -88,9 +88,10 @@ const EventForm = ({ onSubmitForm }) => {
         <label htmlfor="isPrivate" className="block text-sm text-gray-700">
           Event Privacy
         </label>
-
         <Controller
+          //we use controller coz register wont work here
           name="isPrivate"
+          //take control from useForm()
           control={control}
           render={({ field }) => (
             <Select
@@ -107,7 +108,6 @@ const EventForm = ({ onSubmitForm }) => {
             </Select>
           )}
         />
-
         {errors.isPrivate && (
           <p className="text-red-500 text-sm mt-1">
             {" "}

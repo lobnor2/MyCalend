@@ -28,9 +28,12 @@ const Dashboard = () => {
     setValue("username", user?.username);
   }, [isLoaded]);
 
+  //provide function updateUsername to useFetch hook
   const { loading, error, fn: fnUpdateUsername } = useFetch(updateUsername);
 
+  //handle when form is submitted, data contains all the form data
   const onSubmit = async (data) => {
+    //data.username is directly goes into additional ...args in useFetch hook
     fnUpdateUsername(data.username);
   };
   return (
