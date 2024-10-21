@@ -29,3 +29,29 @@ export async function createEvent(data) {
 
   return event;
 }
+
+export async function getUserEvents() {
+  const { userId } = auth();
+  if (!userId) {
+    throw new error("Unauthorized");
+  }
+
+  const user = await db.user.findUnique({
+    where: { clerkUserId: userId },
+  });
+  if (!user) {
+    throw new error("User not found");
+  }
+
+  const events = await db.event.findMany({
+    where: { userId: user.id },
+    orderBy: { createdAt: "desc" },
+    include: {
+      _count: {
+        //get all the bookings related to this event and give us the count
+        select: { bookings: true },
+      },
+    },
+  });
+  return { events, username: user.username };
+}
