@@ -12,6 +12,8 @@ import {
 import { Button } from "./ui/button";
 import { Link, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
+import useFetch from "@/hooks/use-fetch";
+import { deleteEvent } from "@/actions/events";
 
 const EventCard = ({ event, username, isPublic = false }) => {
   const [isCopied, setIsCopied] = useState(false);
@@ -29,7 +31,15 @@ const EventCard = ({ event, username, isPublic = false }) => {
       console.error("Failed to copy: ", error);
     }
   };
-  const handleDelete = async () => {};
+
+  const { loading, fn: fnDeleteEvent } = useFetch(deleteEvent);
+
+  const handleDelete = async () => {
+    if (window?.confirm("Are you sure you want to delete this event?")) {
+      await fnDeleteEvent(event.id);
+    }
+    router.refresh();
+  };
   return (
     <div className="">
       <Card className="cursor-pointer h-full flex flex-col justify-between">
@@ -53,10 +63,15 @@ const EventCard = ({ event, username, isPublic = false }) => {
             <Link className="mr-2 h-5 w-5" />{" "}
             {isCopied ? "Copied" : "Copy Link"}
           </Button>
-          <Button variant="default" className="w-full" onClick={handleDelete}>
+          <Button
+            variant="default"
+            className="w-full"
+            onClick={handleDelete}
+            disabled={loading}
+          >
             <Trash className="mr-2 h-5 w-5" />
             {/* <Trash2 /> */}
-            Delete
+            {loading ? "Deleting..." : "Delete"}
           </Button>
         </CardFooter>
       </Card>
