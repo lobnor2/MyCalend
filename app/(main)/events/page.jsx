@@ -10,17 +10,16 @@ export default function EventsPage() {
   );
 }
 
-//fetch events inside this component
-//but data might not be available instantly
-//hence we use Suspense to show fallback ui
+// fetch events inside this component
+// but data might not be available instantly
+// hence we use Suspense to show fallback ui
 const Events = async () => {
   const { events, username } = await getUserEvents();
 
   if (events.length === 0) {
     return (
       <>
-        /* eslint-disable react/no-unescaped-entities */
-        <p>You haven't created any events yet.</p>;
+        <p>You haven't created any events yet.</p>
       </>
     );
   }
