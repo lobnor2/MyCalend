@@ -16,6 +16,17 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
@@ -47,9 +58,9 @@ const EventCard = ({ event, username, isPublic = false }) => {
   const { loading, fn: fnDeleteEvent } = useFetch(deleteEvent);
 
   const handleDelete = async () => {
-    if (window?.confirm("Are you sure you want to delete this event?")) {
-      await fnDeleteEvent(event.id);
-    }
+    // if (window?.confirm("Are you sure you want to delete this event?")) {
+    // }
+    await fnDeleteEvent(event.id);
     router.refresh();
   };
   return (
@@ -92,16 +103,32 @@ const EventCard = ({ event, username, isPublic = false }) => {
               <Link className="mr-2 h-5 w-5" />{" "}
               {isCopied ? "Copied" : "Copy Link"}
             </Button>
-            <Button
-              variant="default"
-              className="w-full"
-              onClick={handleDelete}
-              disabled={loading}
-            >
-              <Trash className="mr-2 h-5 w-5" />
-              {/* <Trash2 /> */}
-              {loading ? "Deleting..." : "Delete"}
-            </Button>
+
+            <Dialog>
+              <DialogTrigger className="w-full">
+                <Button variant="default" className="w-full" disabled={loading}>
+                  <Trash className="mr-2 h-5 w-5" />
+                  {/* <Trash2 /> */}
+                  {loading ? "Deleting..." : "Delete"}
+                </Button>
+              </DialogTrigger>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="text-center mb-3">
+                    Are you sure you want to delete this event?
+                  </DialogTitle>
+                </DialogHeader>
+
+                <div className="flex gap-5 justify-center">
+                  <DialogClose asChild>
+                    <Button variant="">Cancel</Button>
+                  </DialogClose>
+                  <Button variant="outline" onClick={handleDelete}>
+                    Ok
+                  </Button>
+                </div>
+              </DialogContent>
+            </Dialog>
           </CardFooter>
         </Card>
       </div>
