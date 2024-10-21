@@ -15,6 +15,11 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 import { Button } from "./ui/button";
 import { Link, Trash } from "lucide-react";
@@ -66,9 +71,14 @@ const EventCard = ({ event, username, isPublic = false }) => {
               </TooltipContent>
             </Tooltip>
 
-            <CardDescription className="line-clamp-3">
-              {event.description}
-            </CardDescription>
+            <HoverCard>
+              <HoverCardTrigger>
+                <CardDescription className="line-clamp-2">
+                  {event.description}
+                </CardDescription>
+              </HoverCardTrigger>
+              <HoverCardContent>{event.description}</HoverCardContent>
+            </HoverCard>
           </CardHeader>
           <CardContent>
             <p>Duration : {event.duration} Mins</p>
