@@ -29,11 +29,13 @@ const AppLayout = ({ children }) => {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className={`flex items-center px-4 py-4 text-gray-700 hover:bg-gray-100 ${
-                        pathname === item.href ? "bg-blue-100" : ""
+                      className={`flex items-center px-4 py-4 hover:bg-black hover:text-white ${
+                        pathname === item.href
+                          ? "text-white bg-black"
+                          : "text-black"
                       }`}
                     >
-                      {<item.icon className="mr-3 " />}
+                      {<item.icon className="mr-3" />}
                       {item.label}
                     </Link>
                   </li>
@@ -52,15 +54,16 @@ const AppLayout = ({ children }) => {
           {children}
         </main>
 
-        <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-gray-200 w-screen">
-          <ul className="flex justify-evenly">
+        {/* for small screen */}
+        <nav className="md:hidden fixed bottom-0 bg-black w-screen">
+          <ul className="flex justify-between sm:justify-evenly flex-grow">
             {navItems.map((item) => {
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`flex items-center px-2 py-4 text-gray-900 hover:bg-gray-100 ${
-                      pathname === item.href ? "text-blue-800" : ""
+                    className={`flex items-center py-4 mx-2 ${
+                      pathname === item.href ? "text-white" : "text-gray-400 "
                     }`}
                   >
                     {<item.icon className="mr-2" />}

@@ -9,6 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 import { Button } from "./ui/button";
 import { Link, Trash } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -41,41 +48,54 @@ const EventCard = ({ event, username, isPublic = false }) => {
     router.refresh();
   };
   return (
-    <div className="">
-      <Card className="cursor-pointer h-full flex flex-col justify-between">
-        <CardHeader>
-          <CardTitle className="text-xl  lg:text-2xl font-semibold line-clamp-2">
-            {event.title.charAt(0).toUpperCase() + event.title.slice(1)}
-          </CardTitle>
-          <CardDescription className="line-clamp-3">
-            {event.description}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Duration : {event.duration} Mins</p>
-          <p>Event Privacy : {event.isPrivate ? "Private" : "Public"}</p>
-          <p>Organizer : {username}</p>
-          <p>Bookings count : {event._count.bookings}</p>
-        </CardContent>
-        <CardFooter className="flex sm:flex-col gap-4 md:mt-5  md:items-start">
-          <Button variant="outline" onClick={handleCopy} className="w-full">
-            {" "}
-            <Link className="mr-2 h-5 w-5" />{" "}
-            {isCopied ? "Copied" : "Copy Link"}
-          </Button>
-          <Button
-            variant="default"
-            className="w-full"
-            onClick={handleDelete}
-            disabled={loading}
-          >
-            <Trash className="mr-2 h-5 w-5" />
-            {/* <Trash2 /> */}
-            {loading ? "Deleting..." : "Delete"}
-          </Button>
-        </CardFooter>
-      </Card>
-    </div>
+    <TooltipProvider>
+      <div className="">
+        <Card className="cursor-pointer h-full flex flex-col justify-between">
+          <CardHeader>
+            <Tooltip>
+              <TooltipTrigger>
+                <CardTitle
+                  className="text-xl text-left lg:text-2xl font-semibold line-clamp-2"
+                  //   title={event.title}
+                >
+                  {event.title.charAt(0).toUpperCase() + event.title.slice(1)}
+                </CardTitle>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{event.title}</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <CardDescription className="line-clamp-3">
+              {event.description}
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p>Duration : {event.duration} Mins</p>
+            <p>Event Privacy : {event.isPrivate ? "Private" : "Public"}</p>
+            <p>Organizer : {username}</p>
+            <p>Bookings count : {event._count.bookings}</p>
+          </CardContent>
+          <CardFooter className="flex sm:flex-col gap-4 md:mt-5  md:items-start">
+            <Button variant="outline" onClick={handleCopy} className="w-full">
+              {" "}
+              <Link className="mr-2 h-5 w-5" />{" "}
+              {isCopied ? "Copied" : "Copy Link"}
+            </Button>
+            <Button
+              variant="default"
+              className="w-full"
+              onClick={handleDelete}
+              disabled={loading}
+            >
+              <Trash className="mr-2 h-5 w-5" />
+              {/* <Trash2 /> */}
+              {loading ? "Deleting..." : "Delete"}
+            </Button>
+          </CardFooter>
+        </Card>
+      </div>
+    </TooltipProvider>
   );
 };
 
