@@ -26,7 +26,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     setValue("username", user?.username);
-  }, [isLoaded]);
+  }, [isLoaded, user?.username]);
 
   //provide function updateUsername to useFetch hook
   const { loading, error, fn: fnUpdateUsername } = useFetch(updateUsername);
