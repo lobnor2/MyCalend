@@ -100,8 +100,7 @@ const EventCard = ({ event, username, isPublic = false }) => {
           <CardFooter className="flex sm:flex-col gap-4 md:mt-5  md:items-start">
             <Button variant="outline" onClick={handleCopy} className="w-full">
               {" "}
-              <Link className="mr-2 h-5 w-5" />{" "}
-              {isCopied ? "Copied" : "Copy Link"}
+              <Link className="mr-2 h-5 w-5" /> {isCopied ? "Copied" : "Copy"}
             </Button>
 
             <Dialog>
@@ -121,9 +120,9 @@ const EventCard = ({ event, username, isPublic = false }) => {
 
                 <div className="flex gap-5 justify-center">
                   <DialogClose asChild>
-                    <Button variant="">Cancel</Button>
+                    <Button variant="outline">Cancel</Button>
                   </DialogClose>
-                  <Button variant="outline" onClick={handleDelete}>
+                  <Button variant="" onClick={handleDelete}>
                     Ok
                   </Button>
                 </div>
