@@ -12,6 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { timeSlots } from "../data";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 const AvailabilityForm = ({ initialData }) => {
   const {
@@ -25,6 +27,9 @@ const AvailabilityForm = ({ initialData }) => {
     resolver: zodResolver(availabilitySchema),
     defaultValues: { ...initialData },
   });
+
+  const updateAvailability = () => {};
+
   return (
     <form className="">
       {[
@@ -131,6 +136,29 @@ const AvailabilityForm = ({ initialData }) => {
           </div>
         );
       })}
+      <div className="flex items-center justify-between mx-auto md:ml-5 p-3 mt-10 bg-white border border-gray-300 rounded-md w-[500px] h-16 ">
+        <span>Minimum gap before booking (minutes):</span>
+        <Input
+          type="number"
+          {...register("timeGap", {
+            valueAsNumber: true,
+          })}
+          className="w-32"
+        />
+        {errors?.timeGap && (
+          <span className="text-red-500 text-sm ml-2">
+            {errors.timeGap.message}
+          </span>
+        )}
+      </div>
+      <Button
+        type="submit"
+        className="mt-5 ml-5"
+        size="default"
+        onClick={updateAvailability}
+      >
+        Update Availability
+      </Button>
     </form>
   );
 };
