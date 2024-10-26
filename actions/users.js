@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/lib/prisma";
-const { auth, clerkClient } = require("@clerk/nextjs/server");
+import { auth, clerkClient } from "@clerk/nextjs/server";
 
 //updateUsername takes username that has to be updated in db
 export async function updateUsername(username) {
