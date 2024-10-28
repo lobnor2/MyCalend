@@ -21,7 +21,7 @@ const AppLayout = ({ children }) => {
     <>
       {!isLoaded && <BarLoader width={"100%"} />}
       <div className="flex flex-col h-screen md:flex-row">
-        <aside className="hidden md:block w-64">
+        <aside className="hidden md:block md:w-60 lg:w-80">
           <nav className="">
             <ul>
               {navItems.map((item) => {
@@ -44,9 +44,9 @@ const AppLayout = ({ children }) => {
             </ul>
           </nav>
         </aside>
-        <main className="bg-gray-50 w-screen">
+        <main className="w-screen">
           <header>
-            <h2 className="text-4xl my-10 text-center">
+            <h2 className="text-3xl font-light mt-8 mb-4 ml-4 md:ml-9">
               {navItems.find((item) => item.href === pathname).label ||
                 "Dashboard"}
             </h2>

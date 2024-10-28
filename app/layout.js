@@ -22,9 +22,9 @@ export default function RootLayout({ children }) {
           <main className="min-h-screen overflow-auto">{children}</main>
 
           {/* Footer Component */}
-          <footer className="py-12 mb-10 border border-gray-200 mt-2 border-b-0">
+          <footer className="py-5 mb-14 md:mb-0">
             <div className="container mx-auto px-4 text-center text-gray-600">
-              <p>Made by lobnor</p>
+              <p className="">Made by ©lobnor</p>
             </div>
           </footer>
           <CreateEventDrawer />

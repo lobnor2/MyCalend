@@ -37,7 +37,7 @@ const Dashboard = () => {
     fnUpdateUsername(data.username);
   };
   return (
-    <div className="mx-4 md:mx-10">
+    <div className="mx-4 md:mx-9">
       <Card className="mb-6 md:mb-7">
         <CardHeader>
           <CardTitle>

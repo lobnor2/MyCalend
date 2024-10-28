@@ -167,7 +167,12 @@ const AvailabilityForm = ({ initialData }) => {
       {error && (
         <div className="text-red-500 text-sm ml-6 mt-2">{error?.message}</div>
       )}
-      <Button type="submit" className="mt-10" size="default" disabled={loading}>
+      <Button
+        type="submit"
+        className="mt-10 md:ml-5"
+        size="default"
+        disabled={loading}
+      >
         {loading ? "Updating..." : "Update Availability"}
       </Button>
     </form>
