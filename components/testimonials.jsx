@@ -188,14 +188,14 @@ const Testimonials = () => {
   return (
     <div>
       <Carousel
-        className="w-full mx-auto"
+        className="mx-5"
         plugins={[
           Autoplay({
             delay: 4000,
           }),
         ]}
       >
-        <CarouselContent className="-ml-1">
+        <CarouselContent className="">
           {testimonials.map((testimonial, index) => (
             <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
               <Card className="h-full">

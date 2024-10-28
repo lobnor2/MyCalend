@@ -138,13 +138,13 @@ const AvailabilityForm = ({ initialData }) => {
                   </div>
                 )}
               </div>
-              <div className="w-[130px] line-clamp-2 ml-3 ">
-                {errors[day]?.endTime && (
-                  <span className="text-red-500 text-xs">
-                    {errors[day].endTime.message}
-                  </span>
-                )}
-              </div>
+              {/* <div className="w-[130px] line-clamp-2 ml-3 "> */}
+              {errors[day]?.endTime && (
+                <span className="text-red-500 text-xs ml-2">
+                  {errors[day].endTime.message}
+                </span>
+              )}
+              {/* </div> */}
             </div>
           </div>
         );
@@ -159,13 +159,13 @@ const AvailabilityForm = ({ initialData }) => {
           className="w-32"
         />
         {errors?.timeGap && (
-          <span className="text-red-500 text-sm ml-2 ">
+          <span className="text-red-500 text-xs ml-2 ">
             {errors.timeGap.message}
           </span>
         )}
       </div>
       {error && (
-        <div className="text-red-500 text-sm ml-6 mt-2">{error?.message}</div>
+        <div className="text-red-500 text-xs ml-6 mt-2">{error?.message}</div>
       )}
       <Button
         type="submit"

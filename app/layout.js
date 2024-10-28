@@ -14,7 +14,6 @@ export default function RootLayout({ children }) {
   return (
     <ClerkProvider>
       <html lang="en">
-        {/* Header Component */}
         <body className={inter.className}>
           {/* Header Component */}
           <Header />
