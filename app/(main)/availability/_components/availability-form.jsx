@@ -40,7 +40,7 @@ const AvailabilityForm = ({ initialData }) => {
     await fnUpdateAvailability(data);
   };
   return (
-    <form className="" onSubmit={handleSubmit(onSubmit)}>
+    <form className="mx-4" onSubmit={handleSubmit(onSubmit)}>
       {[
         "monday",
         "tuesday",
@@ -54,7 +54,7 @@ const AvailabilityForm = ({ initialData }) => {
         const available = watch(`${day}.isAvailable`);
         return (
           <div
-            className="px-2 mb-3 mx-3 md:mx-5 flex justify-between border border-black items-center bg-white border border-gray-300 rounded-md   md:w-[600px] h-16"
+            className="px-2 mb-3 md:mx-5 flex justify-between border border-black items-center bg-white border border-gray-300 rounded-md   md:w-[600px] h-16"
             key={day}
           >
             <div className="flex items-center">
@@ -149,7 +149,7 @@ const AvailabilityForm = ({ initialData }) => {
           </div>
         );
       })}
-      <div className="flex items-center justify-between mx-3 md:ml-5 p-3 mt-10 bg-white border border-black rounded-md md:w-[600px] h-16">
+      <div className="flex items-center justify-between md:ml-5 p-3 mt-10 bg-white border border-black rounded-md md:w-[600px] h-16">
         <span>Min gap before booking (minutes):</span>
         <Input
           type="number"
@@ -167,12 +167,7 @@ const AvailabilityForm = ({ initialData }) => {
       {error && (
         <div className="text-red-500 text-sm ml-6 mt-2">{error?.message}</div>
       )}
-      <Button
-        type="submit"
-        className="mt-10 ml-5"
-        size="default"
-        disabled={loading}
-      >
+      <Button type="submit" className="mt-10" size="default" disabled={loading}>
         {loading ? "Updating..." : "Update Availability"}
       </Button>
     </form>
