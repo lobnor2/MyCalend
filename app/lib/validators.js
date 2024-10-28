@@ -38,8 +38,8 @@ export const daySchema = z
       return true;
     },
     {
-      message: "End time must be more than start time",
-      path: ["end Time"],
+      message: "End time must be greater than start time",
+      path: ["endTime"],
     }
   );
 export const availabilitySchema = z.object({

@@ -14,6 +14,8 @@ import {
 import { timeSlots } from "../data";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import useFetch from "@/hooks/use-fetch";
+import { updateAvailability } from "@/actions/availability";
 
 const AvailabilityForm = ({ initialData }) => {
   const {
@@ -28,10 +30,17 @@ const AvailabilityForm = ({ initialData }) => {
     defaultValues: { ...initialData },
   });
 
-  const updateAvailability = () => {};
+  const {
+    fn: fnUpdateAvailability,
+    loading,
+    error,
+  } = useFetch(updateAvailability);
 
+  const onSubmit = async (data) => {
+    await fnUpdateAvailability(data);
+  };
   return (
-    <form className="">
+    <form className="" onSubmit={handleSubmit(onSubmit)}>
       {[
         "monday",
         "tuesday",
@@ -45,7 +54,7 @@ const AvailabilityForm = ({ initialData }) => {
         const available = watch(`${day}.isAvailable`);
         return (
           <div
-            className=" mb-2 mx-auto md:mx-5 p-4 flex justify-between items-center bg-white border border-gray-300 rounded-md w-[500px] h-16"
+            className="px-2 mb-3 mx-3 md:mx-5 flex justify-between border border-black items-center bg-white border border-gray-300 rounded-md   md:w-[600px] h-16"
             key={day}
           >
             <div className="flex items-center">
@@ -67,77 +76,81 @@ const AvailabilityForm = ({ initialData }) => {
                   );
                 }}
               />
-              <span className="ml-2 mr-20">
+              <span className="ml-2">
                 {day.charAt(0).toUpperCase() + day.slice(1)}
               </span>
             </div>
-            <div>
-              {available && (
-                <div className="flex items-center gap-3">
-                  <Controller
-                    name={`${day}.startTime`}
-                    control={control}
-                    render={({ field }) => {
-                      return (
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
-                          <SelectTrigger className="w-28">
-                            <SelectValue placeholder="Start Time" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {timeSlots.map((time) => {
-                              return (
-                                <SelectItem value={time} key={time}>
-                                  {time}
-                                </SelectItem>
-                              );
-                            })}
-                          </SelectContent>
-                        </Select>
-                      );
-                    }}
-                  />
-                  <span>to</span>
-                  <Controller
-                    name={`${day}.endTime`}
-                    control={control}
-                    render={({ field }) => {
-                      return (
-                        <Select
-                          onValueChange={field.onChange}
-                          value={field.value}
-                        >
-                          <SelectTrigger className="w-28">
-                            <SelectValue placeholder="End Time" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {timeSlots.map((time) => {
-                              return (
-                                <SelectItem value={time} key={time}>
-                                  {time}
-                                </SelectItem>
-                              );
-                            })}
-                          </SelectContent>
-                        </Select>
-                      );
-                    }}
-                  />
-                  {errors[day]?.endTime && (
-                    <span className="text-red-500 text-sm ml-2">
-                      {errors[day].endTime.message}
-                    </span>
-                  )}
-                </div>
-              )}
+            <div className="w-96 flex justify-end items-center">
+              <div>
+                {available && (
+                  <div className="flex items-center gap-3">
+                    <Controller
+                      name={`${day}.startTime`}
+                      control={control}
+                      render={({ field }) => {
+                        return (
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-26">
+                              <SelectValue placeholder="Start Time" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {timeSlots.map((time) => {
+                                return (
+                                  <SelectItem value={time} key={time}>
+                                    {time}
+                                  </SelectItem>
+                                );
+                              })}
+                            </SelectContent>
+                          </Select>
+                        );
+                      }}
+                    />
+                    <span>to</span>
+                    <Controller
+                      name={`${day}.endTime`}
+                      control={control}
+                      render={({ field }) => {
+                        return (
+                          <Select
+                            onValueChange={field.onChange}
+                            value={field.value}
+                          >
+                            <SelectTrigger className="w-26">
+                              <SelectValue placeholder="End Time" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {timeSlots.map((time) => {
+                                return (
+                                  <SelectItem value={time} key={time}>
+                                    {time}
+                                  </SelectItem>
+                                );
+                              })}
+                            </SelectContent>
+                          </Select>
+                        );
+                      }}
+                    />
+                  </div>
+                )}
+              </div>
+              <div className="w-[130px] line-clamp-2 ml-3 ">
+                {errors[day]?.endTime && (
+                  <span className="text-red-500 text-xs">
+                    {errors[day].endTime.message}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         );
       })}
-      <div className="flex items-center justify-between mx-auto md:ml-5 p-3 mt-10 bg-white border border-gray-300 rounded-md w-[500px] h-16 ">
-        <span>Minimum gap before booking (minutes):</span>
+      <div className="flex items-center justify-between mx-3 md:ml-5 p-3 mt-10 bg-white border border-black rounded-md md:w-[600px] h-16">
+        <span>Min gap before booking (minutes):</span>
         <Input
           type="number"
           {...register("timeGap", {
@@ -146,18 +159,21 @@ const AvailabilityForm = ({ initialData }) => {
           className="w-32"
         />
         {errors?.timeGap && (
-          <span className="text-red-500 text-sm ml-2">
+          <span className="text-red-500 text-sm ml-2 ">
             {errors.timeGap.message}
           </span>
         )}
       </div>
+      {error && (
+        <div className="text-red-500 text-sm ml-6 mt-2">{error?.message}</div>
+      )}
       <Button
         type="submit"
-        className="mt-5 ml-5"
+        className="mt-10 ml-5"
         size="default"
-        onClick={updateAvailability}
+        disabled={loading}
       >
-        Update Availability
+        {loading ? "Updating..." : "Update Availability"}
       </Button>
     </form>
   );
