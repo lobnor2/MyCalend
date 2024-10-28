@@ -54,7 +54,7 @@ const AvailabilityForm = ({ initialData }) => {
         const available = watch(`${day}.isAvailable`);
         return (
           <div
-            className="px-2 mb-3 md:mx-5 flex justify-between border border-black items-center bg-white border border-gray-300 rounded-md   md:w-[600px] h-16"
+            className="px-2 mb-3 md:mx-5 flex justify-between items-center bg-white border border-gray-300 rounded-md   md:w-[600px] h-16"
             key={day}
           >
             <div className="flex items-center">
@@ -149,7 +149,7 @@ const AvailabilityForm = ({ initialData }) => {
           </div>
         );
       })}
-      <div className="flex items-center justify-between md:ml-5 p-3 mt-10 bg-white border border-black rounded-md md:w-[600px] h-16">
+      <div className="flex items-center justify-between md:ml-5 p-3 mt-10 bg-white border rounded-md md:w-[600px] h-16">
         <span>Min gap before booking (minutes):</span>
         <Input
           type="number"

@@ -16,7 +16,7 @@ import { features, howItWorks } from "./lib/constant";
 
 export default function Home() {
   return (
-    <main className="lg:px-52">
+    <main className="lg:px-32 xl:px-52">
       <div className="flex flex-col md:flex-row  justify-evenly items-center mt-5 lg:w-full lg:mt-16">
         <div className="px-5 md:px-2 text-center md:w-3/4 lg:w-1/2">
           <h1 className="text-3xl mt-9 pb-4 lg:text-4xl font-extralight lg:pb-6">
