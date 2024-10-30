@@ -1,7 +1,7 @@
 import React from "react";
 
 const Meeting = () => {
-  return <div>Meeting</div>;
+  return <div className="text-xs">Meeting</div>;
 };
 
 export default Meeting;

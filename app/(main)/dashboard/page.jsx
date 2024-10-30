@@ -60,7 +60,7 @@ const Dashboard = () => {
                 <span>{window?.location.origin}/</span>
                 <Input
                   placeholder="username"
-                  className="w-auto"
+                  className="w-1/4"
                   {...register("username")}
                 />
               </div>

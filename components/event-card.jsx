@@ -74,28 +74,29 @@ const EventCard = ({ event, username, isPublic = false }) => {
                   className="text-xl text-left lg:text-2xl font-semibold line-clamp-2"
                   //   title={event.title}
                 >
-                  {event.title.charAt(0).toUpperCase() + event.title.slice(1)}
+                  {event?.title?.charAt(0).toUpperCase() +
+                    event?.title?.slice(1)}
                 </CardTitle>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{event.title}</p>
+                <p>{event?.title}</p>
               </TooltipContent>
             </Tooltip>
 
             <HoverCard>
               <HoverCardTrigger>
                 <CardDescription className="line-clamp-2">
-                  {event.description}
+                  {event?.description}
                 </CardDescription>
               </HoverCardTrigger>
-              <HoverCardContent>{event.description}</HoverCardContent>
+              <HoverCardContent>{event?.description}</HoverCardContent>
             </HoverCard>
           </CardHeader>
           <CardContent>
-            <p>Duration : {event.duration} Mins</p>
-            <p>Event Privacy : {event.isPrivate ? "Private" : "Public"}</p>
+            <p>Duration : {event?.duration} Mins</p>
+            <p>Event Privacy : {event?.isPrivate ? "Private" : "Public"}</p>
+            <p>Bookings count : {event?._count?.bookings}</p>
             <p>Organizer : {username}</p>
-            <p>Bookings count : {event._count.bookings}</p>
           </CardContent>
           <CardFooter className="flex sm:flex-col gap-4 md:mt-5  md:items-start">
             <Button variant="outline" onClick={handleCopy} className="w-full">
