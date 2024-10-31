@@ -12,9 +12,9 @@ const UserProfile = async ({ params }) => {
     notFound();
   }
   return (
-    <div className="container mx-auto border border-green-500 px-4 py-8">
-      <div className="flex flex-col items-center border border-red-500">
-        <Avatar className="h-24 w-24 border border-blue-500 mb-2">
+    <div className="mx-auto border border-green-500 px-4 py-8">
+      <div className="flex flex-col items-center">
+        <Avatar className="h-24 w-24 mb-2">
           <AvatarImage src={user.imageUrl} alt={user.name} />
           <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
         </Avatar>
@@ -27,7 +27,7 @@ const UserProfile = async ({ params }) => {
       {user.events.length === 0 ? (
         <p className="text-gray-500">No Public Events Availabile</p>
       ) : (
-        <div className="border border-blue-500 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mt-5">
           {user.events.map((event) => {
             return (
               <EventCard

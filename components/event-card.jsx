@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import {
   Card,
@@ -19,13 +18,10 @@ import {
   Dialog,
   DialogClose,
   DialogContent,
-  DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
 import {
   HoverCard,
   HoverCardContent,
@@ -63,10 +59,23 @@ const EventCard = ({ event, username, isPublic = false }) => {
     await fnDeleteEvent(event.id);
     router.refresh();
   };
+  //click handle on the card
+  const handleCardClick = (e) => {
+    if (e.target.tagname !== "BUTTON" && e.target.tagName !== "SVG") {
+      window?.open(
+        `${window?.location.origin}/${username}/${event.id}`,
+        "_blank"
+      );
+    }
+  };
+
   return (
     <TooltipProvider>
-      <div className="">
-        <Card className="cursor-pointer h-full flex flex-col justify-between">
+      <div>
+        <Card
+          className="cursor-pointer h-full flex flex-col justify-between"
+          onClick={handleCardClick}
+        >
           <CardHeader>
             <Tooltip>
               <TooltipTrigger>
@@ -98,38 +107,44 @@ const EventCard = ({ event, username, isPublic = false }) => {
             <p>Bookings count : {event?._count?.bookings}</p>
             <p>Organizer : {username}</p>
           </CardContent>
-          <CardFooter className="flex sm:flex-col gap-4 md:mt-5  md:items-start">
-            <Button variant="outline" onClick={handleCopy} className="w-full">
-              {" "}
-              <Link className="mr-2 h-5 w-5" /> {isCopied ? "Copied" : "Copy"}
-            </Button>
+          {!isPublic && (
+            <CardFooter className="flex sm:flex-col gap-4 md:mt-5  md:items-start">
+              <Button variant="outline" onClick={handleCopy} className="w-full">
+                {" "}
+                <Link className="mr-2 h-5 w-5" /> {isCopied ? "Copied" : "Copy"}
+              </Button>
 
-            <Dialog>
-              <DialogTrigger className="w-full">
-                <Button variant="default" className="w-full" disabled={loading}>
-                  <Trash className="mr-2 h-5 w-5" />
-                  {/* <Trash2 /> */}
-                  {loading ? "Deleting..." : "Delete"}
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle className="text-center mb-3">
-                    Are you sure you want to delete this event?
-                  </DialogTitle>
-                </DialogHeader>
-
-                <div className="flex gap-5 justify-center">
-                  <DialogClose asChild>
-                    <Button variant="outline">Cancel</Button>
-                  </DialogClose>
-                  <Button variant="" onClick={handleDelete}>
-                    Ok
+              <Dialog>
+                <DialogTrigger className="w-full">
+                  <Button
+                    variant="default"
+                    className="w-full"
+                    disabled={loading}
+                  >
+                    <Trash className="mr-2 h-5 w-5" />
+                    {loading ? "Deleting..." : "Delete"}
                   </Button>
-                </div>
-              </DialogContent>
-            </Dialog>
-          </CardFooter>
+                </DialogTrigger>
+
+                <DialogContent>
+                  <DialogHeader>
+                    <DialogTitle className="text-center mb-3">
+                      Are you sure you want to delete this event?
+                    </DialogTitle>
+                  </DialogHeader>
+
+                  <div className="flex gap-5 justify-center">
+                    <DialogClose asChild>
+                      <Button variant="outline">Cancel</Button>
+                    </DialogClose>
+                    <Button variant="" onClick={handleDelete}>
+                      Ok
+                    </Button>
+                  </div>
+                </DialogContent>
+              </Dialog>
+            </CardFooter>
+          )}
         </Card>
       </div>
     </TooltipProvider>
