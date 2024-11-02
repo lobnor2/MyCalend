@@ -7,6 +7,7 @@ import { auth, clerkClient } from "@clerk/nextjs/server";
 export async function updateUsername(username) {
   //userId for verifying is user is logged in or not
   const { userId } = auth();
+  console.log("userId from server -> ", userId);
 
   //throw error if user is not logged in
   if (!userId) {
