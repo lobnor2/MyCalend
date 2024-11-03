@@ -3,6 +3,7 @@ import { getUserByUsername } from "@/actions/users";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
 import EventDetails from "./_components/event-details";
+import BookingForm from "./_components/booking-form";
 
 export async function getMetadata({ params }) {
   const event = await getEventDetails(params.username, params.eventId);
@@ -27,9 +28,10 @@ const EventPage = async ({ params }) => {
   return (
     <div>
       <EventDetails event={event} />
-      {/* <Suspense fallback={<div>Loading Booking form...</div>}>
+      <Suspense fallback={<div>Loading Booking form...</div>}>
+        {/*  most important logic */}
         <BookingForm />
-      </Suspense> */}
+      </Suspense>
     </div>
   );
 };
