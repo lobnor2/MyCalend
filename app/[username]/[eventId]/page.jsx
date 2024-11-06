@@ -1,4 +1,4 @@
-import { getEventDetails } from "@/actions/events";
+import { getEventAvialability, getEventDetails } from "@/actions/events";
 import { getUserByUsername } from "@/actions/users";
 import { notFound } from "next/navigation";
 import React, { Suspense } from "react";
@@ -21,16 +21,18 @@ export async function getMetadata({ params }) {
 
 const EventPage = async ({ params }) => {
   const event = await getEventDetails(params.username, params.eventId);
+  const availability = await getEventAvialability(params.eventId);
+
   if (!event) {
     notFound();
   }
 
   return (
-    <div>
+    <div className="container mx-auto grid md:grid-cols-2 mt-5 gap-3 md:gap-2">
       <EventDetails event={event} />
       <Suspense fallback={<div>Loading Booking form...</div>}>
         {/*  most important logic */}
-        <BookingForm />
+        <BookingForm event={event} availability={availability} />
       </Suspense>
     </div>
   );

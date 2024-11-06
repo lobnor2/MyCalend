@@ -1,22 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card } from "@/components/ui/card";
-import {
-  Calendar,
-  CalendarArrowDown,
-  Clock,
-  Clock1,
-  Clock10Icon,
-} from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import React from "react";
 
 const EventDetails = ({ event }) => {
   const { user } = event;
   //   console.log(event);
   return (
-    <div className=" container mx-auto border border-red-500 bg-white p-10 lg:w-1/2">
-      <h1 className="text-2xl text-center mb-3 font-semibold">{event.title}</h1>
-      <div className="flex items-center border border-blue-500 mb-5">
-        <Avatar className="h-24 w-24 mb-2">
+    <div className="border py-5 px-3 bg-white shadow-lg rounded-xl">
+      <h1 className="text-2xl text-center mt-1 font-semibold">{event.title}</h1>
+      <div className="flex items-center mb-3">
+        <Avatar className="h-24 w-24 ">
           <AvatarImage src={user.imageUrl} alt={user.name} />
           <AvatarFallback>{user.name.charAt(0)}</AvatarFallback>
         </Avatar>
@@ -34,7 +28,7 @@ const EventDetails = ({ event }) => {
         <Calendar className="mr-1" />
         <span>Google Meet</span>
       </div>
-      <p>{event.description}</p>
+      <p className="mt-5">{event.description}</p>
     </div>
   );
 };

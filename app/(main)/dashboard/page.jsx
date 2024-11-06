@@ -31,7 +31,11 @@ const Dashboard = () => {
 
   //provide function updateUsername to useFetch hook
   const { loading, error, fn: fnUpdateUsername } = useFetch(updateUsername);
-  useEffect(() => {
+
+  //handle when form is submitted, data contains all the form data
+  const onSubmit = async (data) => {
+    //data.username is directly goes into additional ...args in useFetch hook
+    await fnUpdateUsername(data.username);
     if (error) {
       toast({
         duration: 3000,
@@ -39,15 +43,6 @@ const Dashboard = () => {
         title: "Username already exists",
         description: "Try another username",
       });
-    }
-  }, [error]); // Runs only when `error` changes
-
-  //handle when form is submitted, data contains all the form data
-  const onSubmit = async (data) => {
-    //data.username is directly goes into additional ...args in useFetch hook
-    await fnUpdateUsername(data.username);
-    if (error) {
-      ("");
     } else {
       toast({
         duration: 3000,
