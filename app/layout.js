@@ -3,6 +3,7 @@ import "./globals.css";
 import Header from "@/components/header";
 import { ClerkProvider } from "@clerk/nextjs";
 import CreateEventDrawer from "@/components/create-event";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = {
   title: "mycalend",
@@ -27,6 +28,7 @@ export default function RootLayout({ children }) {
             </div>
           </footer>
           <CreateEventDrawer />
+          <Toaster />
         </body>{" "}
       </html>
     </ClerkProvider>

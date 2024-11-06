@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,6 +10,7 @@ import { usernameSchema } from "@/app/lib/validators";
 import useFetch from "@/hooks/use-fetch";
 import { updateUsername } from "@/actions/users";
 import { BarLoader } from "react-spinners";
+import { useToast } from "@/hooks/use-toast";
 
 const Dashboard = () => {
   const { isLoaded, user } = useUser();
@@ -24,17 +24,37 @@ const Dashboard = () => {
     resolver: zodResolver(usernameSchema),
   });
 
+  const { toast } = useToast();
   useEffect(() => {
     setValue("username", user?.username);
   }, [isLoaded, user?.username]);
 
   //provide function updateUsername to useFetch hook
   const { loading, error, fn: fnUpdateUsername } = useFetch(updateUsername);
+  useEffect(() => {
+    if (error) {
+      toast({
+        duration: 3000,
+        variant: "destructive",
+        title: "Username already exists",
+        description: "Try another username",
+      });
+    }
+  }, [error]); // Runs only when `error` changes
 
   //handle when form is submitted, data contains all the form data
   const onSubmit = async (data) => {
     //data.username is directly goes into additional ...args in useFetch hook
-    fnUpdateUsername(data.username);
+    await fnUpdateUsername(data.username);
+    if (error) {
+      ("");
+    } else {
+      toast({
+        duration: 3000,
+        title: "Successfully Updated Username",
+        // description: "Friday, February 10, 2023 at 5:57 PM",
+      });
+    }
   };
   return (
     <div className="mx-4 md:mx-9">
@@ -70,8 +90,15 @@ const Dashboard = () => {
                 </p>
               )}
               {error && (
-                <p className="text-red-500 text-sm mt-1">{error?.message}</p>
+                <p className="text-red-500 text-sm mt-1">{error?.message} </p>
               )}
+              {/* {error &&
+                toast({
+                  duration: 3000,
+                  variant: "destructive",
+                  title: "Username already exists",
+                  description: "Try another username",
+                })} */}
             </div>
             {loading && <BarLoader className="my-2" width={"100%"} />}
             <Button className="mt-3" type="submit">
