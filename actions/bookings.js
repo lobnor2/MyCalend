@@ -1,3 +1,4 @@
+"use server";
 import { db } from "@/lib/prisma";
 import { clerkClient } from "@clerk/nextjs/server";
 import { google } from "googleapis";
@@ -17,7 +18,7 @@ export async function createBooking(bookingData) {
     }
 
     //use google calender api to generate meet link and add to calender
-    const { data } = clerkClient.users.getUserOauthAccessToken(
+    const { data } = await clerkClient.users.getUserOauthAccessToken(
       event.user.clerkUserId,
       "oauth_google"
     );

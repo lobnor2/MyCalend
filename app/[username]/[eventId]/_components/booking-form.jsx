@@ -1,8 +1,10 @@
 "use client";
+import { createBooking } from "@/actions/bookings";
 import { bookingSchema } from "@/app/lib/validators";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import useFetch from "@/hooks/use-fetch";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { format } from "date-fns";
 import React, { useEffect, useState } from "react";
@@ -41,9 +43,52 @@ const BookingForm = ({ event, availability }) => {
     }
   }, [selectedTime]);
 
+  const { loading, data, fn: fnCreateBooking } = useFetch(createBooking);
+
   const onSubmit = async (data) => {
-    console.log("form data ->>>>", data);
+    fnCreateBooking(data);
+    if (!selectedDate || !selectedTime) {
+      console.error("Date or time not selected");
+      return;
+    }
+    const startTime = new Date(
+      `${format(selectedDate, "yyyy-MM-dd")}T${selectedTime}`
+    );
+    const endTime = new Date(startTime.getTime() + event.duration * 60000);
+
+    const bookingData = {
+      eventId: event.id,
+      name: data.name,
+      email: data.email,
+      startTime: startTime.toISOString(),
+      endTime: endTime.toISOString(),
+      additionalInfo: data.additionalInfo,
+    };
+
+    await fnCreateBooking(bookingData);
+
+    // console.log("form data ->>>>", data);
   };
+  if (data) {
+    return (
+      <div className="border rounded-xl shadow-md">
+        <h2 className="text-xl text-center mt-2">Booking Successfull</h2>
+        {data.meetLink && (
+          <p className="mt-2 px-5 text-center">
+            Join the meeting:{" "}
+            <a
+              href={data.meetLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              {data.meetLink}
+            </a>{" "}
+          </p>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="shadow-md rounded-xl border py-5 mt-2 md:mt-0">
@@ -123,7 +168,9 @@ const BookingForm = ({ event, availability }) => {
                     </p>
                   )}
                 </div>
-                <Button type="submit">Schedule Event</Button>
+                <Button type="submit" disabled={loading}>
+                  {loading ? "Scheduling..." : "Schedule Event"}
+                </Button>
               </div>
             </form>
           )}
