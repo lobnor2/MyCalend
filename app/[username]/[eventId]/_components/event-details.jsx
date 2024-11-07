@@ -7,7 +7,7 @@ const EventDetails = ({ event }) => {
   const { user } = event;
   //   console.log(event);
   return (
-    <div className="border py-5 px-3 bg-white shadow-lg rounded-xl">
+    <div className="border py-5 px-5 bg-white shadow-lg rounded-xl">
       <h1 className="text-2xl text-center mt-1 font-semibold">{event.title}</h1>
       <div className="flex items-center mb-3">
         <Avatar className="h-24 w-24 ">

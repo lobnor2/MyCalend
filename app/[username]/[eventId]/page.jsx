@@ -28,7 +28,7 @@ const EventPage = async ({ params }) => {
   }
 
   return (
-    <div className=" mx-10 grid md:grid-cols-[1fr_2fr] mt-5 gap-3 md:gap-2">
+    <div className="mx-10 grid md:grid-cols-[1fr_1fr] lg:grid-cols-[1fr_2fr] mt-5 gap-3 md:gap-2">
       <EventDetails event={event} />
       <Suspense fallback={<div>Loading Booking form...</div>}>
         {/*  most important logic */}
