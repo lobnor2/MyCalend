@@ -46,7 +46,7 @@ const BookingForm = ({ event, availability }) => {
   };
 
   return (
-    <div className="shadow-lg rounded-xl border py-5 mt-2 md:mt-0">
+    <div className="shadow-md rounded-xl border py-5 mt-2 md:mt-0">
       <div className="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-5 /*border border-green-500*/">
         <div className="/*border border-blue-500*/">
           <DayPicker
@@ -63,19 +63,18 @@ const BookingForm = ({ event, availability }) => {
             }}
             modifiersStyles={{
               available: {
-                // background: "#fee4e4",
                 borderRadius: 100,
-                fontWeight: "bold",
+                fontWeight: "900",
               },
             }}
             classNames={{
-              today: `text-white bg-black`,
+              today: `text-white bg-black rounded-full`,
               selected: `bg-black/40 text-white rounded-full`,
               chevron: `fill-black`,
             }}
           />
         </div>
-        <div className="mt-2 px-2 md:mt-0 md:w-96 w-full md:overflow-scroll no-scrollbar /*border border-red-500*/">
+        <div className="mt-2 px-2 md:mt-0 md:w-96 w-full md:overflow-scroll no-scrollbar border border-red-500">
           {selectedDate && (
             <div>
               <div className="text-lg mb-2">Available Time Slots</div>
@@ -98,7 +97,7 @@ const BookingForm = ({ event, availability }) => {
             <form className="w-full mt-5" onSubmit={handleSubmit(onSubmit)}>
               <div className="flex flex-col gap-2">
                 <div>
-                  <Input placeholder="Your Name" {...register("name")} />
+                  <Input placeholder="Name" {...register("name")} />
                   {errors.name && (
                     <p className="text-red-500 text-sm">
                       {errors.name.message}
@@ -106,7 +105,7 @@ const BookingForm = ({ event, availability }) => {
                   )}
                 </div>
                 <div>
-                  <Input placeholder="Your Email" {...register("email")} />
+                  <Input placeholder="Email" {...register("email")} />
                   {errors.email && (
                     <p className="text-red-500 text-sm">
                       {errors.email.message}
