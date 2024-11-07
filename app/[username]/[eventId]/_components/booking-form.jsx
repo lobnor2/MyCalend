@@ -48,7 +48,7 @@ const BookingForm = ({ event, availability }) => {
   return (
     <div className="shadow-md rounded-xl border py-5 mt-2 md:mt-0">
       <div className="flex flex-col items-center lg:items-start justify-center lg:flex-row gap-5 /*border border-green-500*/">
-        <div className="/*border border-blue-500*/">
+        <div className="/*border border-blue-500*/ lg:h-96">
           <DayPicker
             autoFocus
             mode="single"
@@ -74,7 +74,7 @@ const BookingForm = ({ event, availability }) => {
             }}
           />
         </div>
-        <div className="mt-2 px-2 md:mt-0 md:w-96 w-full md:overflow-scroll no-scrollbar border border-red-500">
+        <div className="mt-2 px-2 md:mt-0 md:w-96 w-full md:overflow-scroll no-scrollbar /*border border-red-500*/ lg:h-96">
           {selectedDate && (
             <div>
               <div className="text-lg mb-2">Available Time Slots</div>
