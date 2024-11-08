@@ -45,12 +45,12 @@ const MeetingList = ({ meetings, type }) => {
               </div>
             </CardContent>
             <CardFooter className=" flex flex-col md:flex-row items-center gap-3">
-              <div className="flex-grow">
+              <div className="flex-grow w-full">
                 <Button variant="outline" className="w-full">
                   Cancel Meeting
                 </Button>
               </div>
-              <div className="flex-grow">
+              <div className="flex-grow w-full">
                 {meeting.meetLink && (
                   <div className="flex items-center">
                     <Button variant="default" className="w-full">

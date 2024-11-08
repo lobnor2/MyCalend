@@ -10,11 +10,15 @@ export const metadata = {
 
 const Meeting = () => {
   return (
-    <div className="border border-red-500">
-      <Tabs defaultValue="account" className="border border-blue-500">
-        <TabsList>
-          <TabsTrigger value="upcoming">Upcoming Meetings</TabsTrigger>
-          <TabsTrigger value="past">Past Meetings</TabsTrigger>
+    <div className="mx-4 md:ml-7">
+      <Tabs defaultValue="upcoming" className="pt-2">
+        <TabsList className="mb-5 w-full">
+          <TabsTrigger value="upcoming" className="px-10">
+            Upcoming Meetings
+          </TabsTrigger>
+          <TabsTrigger value="past" className="px-10">
+            Past Meetings
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="upcoming">
           <Suspense fallback={<div>Loading upcoming meetings...</div>}>
