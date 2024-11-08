@@ -61,7 +61,8 @@ const EventCard = ({ event, username, isPublic = false }) => {
   };
   //click handle on the card
   const handleCardClick = (e) => {
-    if (e.target.tagname !== "BUTTON" && e.target.tagName !== "SVG") {
+    console.log("delete clicked", e.target.tagName);
+    if (e.target.tagName !== "BUTTON" && e.target.tagName !== "SVG") {
       window?.open(
         `${window?.location.origin}/${username}/${event.id}`,
         "_blank"
