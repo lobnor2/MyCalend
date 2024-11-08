@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import { useUser } from "@clerk/nextjs";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -89,6 +90,9 @@ const Dashboard = () => {
                           "MMM d, yyyy h:mm a"
                         )}{" "}
                         with {meeting.name}
+                        <Badge className="ml-2 bg-black text-white text-xs animate-jiggle">
+                          New
+                        </Badge>
                       </li>
                     );
                   })}

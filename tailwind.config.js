@@ -8,6 +8,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        jiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
+        },
+      },
+      animation: {
+        jiggle: "jiggle 0.2s ease-in-out infinite",
+      },
+
       screens: {
         xs: "400px",
         sm: "640px",
