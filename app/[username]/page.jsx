@@ -25,7 +25,7 @@ const UserProfile = async ({ params }) => {
     notFound();
   }
   return (
-    <div className="mx-auto border border-green-500 px-4 py-8">
+    <div className="mx-auto px-4 py-8">
       <div className="flex flex-col items-center">
         <Avatar className="h-24 w-24 mb-2">
           <AvatarImage src={user.imageUrl} alt={user.name} />

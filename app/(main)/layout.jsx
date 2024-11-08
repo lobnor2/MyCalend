@@ -55,18 +55,18 @@ const AppLayout = ({ children }) => {
         </main>
 
         {/* for small screen */}
-        <nav className=" border border-red-500 md:hidden fixed bottom-0 bg-black w-screen">
-          <ul className="flex justify-between sm:justify-evenly flex-grow flex-shrink border border-white">
+        <nav className=" md:hidden fixed bottom-0 bg-black w-screen">
+          <ul className="flex justify-between sm:justify-evenly flex-grow mx-2 py-3">
             {navItems.map((item) => {
               return (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className={`flex items-center py-3 mx-1 text-xs xs:text-xss sm:text-md md:text-lg ${
+                    className={`flex items-center justify-center text-xs xs:text-xss sm:text-md md:text-lg ${
                       pathname === item.href ? "text-white" : "text-gray-400"
                     }`}
                   >
-                    {<item.icon className="h-4 xs:h-5 sm:mr-1" />}
+                    {<item.icon className="h-4 w-4 xs:h-5 xs:w-5 sm:mr-1" />}
                     {item.label}
                   </Link>
                 </li>
