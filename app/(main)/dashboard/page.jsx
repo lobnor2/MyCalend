@@ -90,7 +90,7 @@ const Dashboard = () => {
                           "MMM d, yyyy h:mm a"
                         )}{" "}
                         with {meeting.name}
-                        <Badge className="ml-2 bg-black text-white text-xs animate-jiggle">
+                        <Badge className=" ml-2 bg-black text-white text-xs animate-jiggle">
                           New
                         </Badge>
                       </li>
@@ -114,11 +114,11 @@ const Dashboard = () => {
         <CardContent>
           <form className="" onSubmit={handleSubmit(onSubmit)}>
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <span>{window?.location.origin}/</span>
                 <Input
                   placeholder="username"
-                  className="w-1/4"
+                  className="w-1/3"
                   {...register("username")}
                 />
               </div>

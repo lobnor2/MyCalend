@@ -4,7 +4,7 @@ import React, { Suspense } from "react";
 
 export default function EventsPage() {
   return (
-    <Suspense fallback={<div>Loading Events...</div>}>
+    <Suspense fallback={<div className="ml-4">Loading Events...</div>}>
       <Events />
     </Suspense>
   );

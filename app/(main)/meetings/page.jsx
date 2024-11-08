@@ -21,12 +21,16 @@ const Meeting = () => {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="upcoming">
-          <Suspense fallback={<div>Loading upcoming meetings...</div>}>
+          <Suspense
+            fallback={<div className="ml-4">Loading upcoming meetings...</div>}
+          >
             <UpcomingMeetings />
           </Suspense>
         </TabsContent>
         <TabsContent value="past">
-          <Suspense fallback={<div>Loading past meetings...</div>}>
+          <Suspense
+            fallback={<div className="ml-4">Loading past meetings...</div>}
+          >
             <PastMeetings />
           </Suspense>
         </TabsContent>
