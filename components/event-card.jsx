@@ -61,7 +61,8 @@ const EventCard = ({ event, username, isPublic = false }) => {
   };
   //click handle on the card
   const handleCardClick = (e) => {
-    console.log("delete clicked", e.target.tagName);
+    // console.log("delete clicked", e.target.tagName);
+    e.stopPropagation();
     if (e.target.tagName !== "BUTTON" && e.target.tagName !== "SVG") {
       window?.open(
         `${window?.location.origin}/${username}/${event.id}`,
@@ -116,6 +117,7 @@ const EventCard = ({ event, username, isPublic = false }) => {
               </Button>
 
               <Dialog>
+                {" "}
                 <DialogTrigger className="w-full">
                   <Button
                     variant="default"
@@ -126,7 +128,6 @@ const EventCard = ({ event, username, isPublic = false }) => {
                     {loading ? "Deleting..." : "Delete"}
                   </Button>
                 </DialogTrigger>
-
                 <DialogContent>
                   <DialogHeader>
                     <DialogTitle className="text-center mb-3">

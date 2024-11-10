@@ -10,6 +10,7 @@ import {
 import { Calendar, Clock, Video } from "lucide-react";
 import { format } from "date-fns";
 import { Button } from "@/components/ui/button";
+import CancelMeetingButton from "./cancel-meeting";
 
 const MeetingList = ({ meetings, type }) => {
   if (meetings.length === 0) {
@@ -46,9 +47,10 @@ const MeetingList = ({ meetings, type }) => {
             </CardContent>
             <CardFooter className=" flex flex-col md:flex-row items-center gap-3">
               <div className="flex-grow w-full">
-                <Button variant="outline" className="w-full">
+                <CancelMeetingButton meetingId={meeting.id} />
+                {/* <Button variant="outline" className="w-full">
                   Cancel Meeting
-                </Button>
+                </Button> */}
               </div>
               <div className="flex-grow w-full">
                 {meeting.meetLink && (
