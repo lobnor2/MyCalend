@@ -12,7 +12,7 @@ const Meeting = () => {
   return (
     <div className="mx-4 md:ml-7">
       <Tabs defaultValue="upcoming" className="pt-2">
-        <TabsList className="mb-5 w-full">
+        <TabsList className="mb-5 w-full md:w-auto">
           <TabsTrigger value="upcoming" className="px-10">
             Upcoming Meetings
           </TabsTrigger>

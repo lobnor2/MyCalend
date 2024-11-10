@@ -45,7 +45,7 @@ const MeetingList = ({ meetings, type }) => {
                 </span>
               </div>
             </CardContent>
-            <CardFooter className=" flex flex-col md:flex-row items-center gap-3">
+            <CardFooter className="flex flex-col items-center gap-3 ">
               <div className="flex-grow w-full">
                 <CancelMeetingButton meetingId={meeting.id} />
                 {/* <Button variant="outline" className="w-full">
